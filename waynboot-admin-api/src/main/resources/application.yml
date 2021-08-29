@@ -1,0 +1,92 @@
+server:
+  port: 81
+
+spring:
+  profiles:
+    active: dev,druid
+  thymeleaf:
+    cache: false
+    suffix: .html
+    check-template-location: false
+  servlet:
+    multipart:
+      enabled: true
+      location: ${wayn.uploadDir}
+      file-size-threshold: 5MB
+      max-file-size: 200MB
+      max-request-size: 200MB
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌秘钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（默认30分钟）
+  expireTime: 120
+
+# 日志配置
+logging:
+  level:
+    com.wayn: debug
+    org.springframework: info
+    com.baomidou: info
+
+# mybatis plus 配置
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: delFlag  #全局逻辑删除字段值 3.3.0开始支持，详情看下面。
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  # 搜索指定包别名
+  typeAliasesPackage: com.wayn.**.domain
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+
+# wayn配置
+wayn:
+  name: wayn
+  version: 1.1.0
+  email: 752042257@qq.com
+#  uploadDir: /opt/wayn/upload # linux下文件上传目录
+  uploadDir: D:/wayn/upload # windows下文件上传目录
+  adminUrl: http://127.0.0.1:81
+  mobileUrl: http://127.0.0.1:82
+
+# 快递列表
+shop:
+  express:
+    enable: false
+    appId: "XXXXXXXXX"
+    appKey: "XXXXXXXXXXXXXXXXXXXXXXXXX"
+    vendors:
+      - code: "ZTO"
+        name: "中通快递"
+      - code: "YTO"
+        name: "圆通速递"
+      - code: "YD"
+        name: "韵达速递"
+      - code: "YZPY"
+        name: "邮政快递包裹"
+      - code: "EMS"
+        name: "EMS"
+      - code: "DBL"
+        name: "德邦快递"
+      - code: "FAST"
+        name: "快捷快递"
+      - code: "ZJS"
+        name: "宅急送"
+      - code: "TNT"
+        name: "TNT快递"
+      - code: "UPS"
+        name: "UPS"
+      - code: "DHL"
+        name: "DHL"
+      - code: "FEDEX"
+        name: "FEDEX联邦(国内件)"
+      - code: "FEDEX_GJ"
+        name: "FEDEX联邦(国际件)"

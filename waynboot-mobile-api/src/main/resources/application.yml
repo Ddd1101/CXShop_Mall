@@ -1,0 +1,76 @@
+server:
+  port: 82
+#  https配置，放开HttpsConfiguration文件注释即可
+#  port: 443
+#  ssl:
+#    enabled: true
+#    key-store: classpath:mall.wayn.ltd.jks
+#    key-store-password: idFXdK.Rnm3CgZp
+#    key-store-type: JKS
+#http-port: 82
+
+spring:
+  profiles:
+    active: dev,hikari
+  thymeleaf:
+    cache: false
+    suffix: .html
+    check-template-location: false
+  servlet:
+    multipart:
+      enabled: true
+      location: ${wayn.uploadDir}
+      file-size-threshold: 5MB
+      max-file-size: 200MB
+      max-request-size: 200MB
+
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌秘钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（默认30天）
+  expireTime: 30
+
+# 日志配置
+logging:
+  level:
+    com.wayn: debug
+    org.springframework: info
+    com.baomidou: info
+
+# mybatis plus 配置
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: delFlag  # 全局逻辑删除字段值 3.3.0开始支持，详情看下面。
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  # 搜索指定包别名
+  typeAliasesPackage: com.wayn.**.domain
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapperLocations: classpath*:mapper/**/*Mapper.xml
+
+# wayn配置
+wayn:
+  name: wayn
+  version: 1.1.0
+  email: 752042257@qq.com
+#  uploadDir: /opt/wayn/upload # linux下文件上传目录
+  uploadDir: D:/wayn/upload # windows下文件上传目录
+  adminUrl: http://127.0.0.1:81
+  mobileUrl: http://127.0.0.1:82
+
+# wx支付配置
+shop:
+  # 开发者应该设置成自己的wx相关信息
+  wx:
+    app-id:
+    app-secret:
+    mch-id:
+    mch-key:
+    notify-url: http://www.example.com/wx/order/pay-notify
+    # 商户证书文件路径
+    # 请参考“商户证书”一节 https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=4_3
+    key-path: xxxxx

@@ -1,0 +1,32 @@
+server:
+  port: 85
+
+spring:
+  redis:
+    host: 43.129.201.167
+    port: 6379
+    password:
+    database: 0
+    timeout: 5000
+    expire: 400
+  # 配置rabbitMq 服务器
+  rabbitmq:
+    host: 43.129.201.167
+    port: 5672
+    username: guest
+    password: guest
+    # 消息确认配置项
+    # 确认消息已发送到交换机(Exchange)
+    publisher-confirm-type: correlated
+    # 确认消息已发送到队列(Queue)
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+        prefetch: 100
+
+# 日志配置
+logging:
+  level:
+    com.wayn: debug
+    org.springframework: info
