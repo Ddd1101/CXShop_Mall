@@ -59,6 +59,7 @@ public class MailUtil {
                 // Set Subject: 头部头字段
                 helper.setSubject(mailVO.getSubject());
                 // 设置消息体
+                log.info("验证码：{}", mailVO.getContent());
                 helper.setText(mailVO.getContent(), isHtml);
                 Transport.send(message);
                 log.info("邮件发送成功");
