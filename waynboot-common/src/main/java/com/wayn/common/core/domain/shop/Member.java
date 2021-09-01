@@ -34,11 +34,6 @@ public class Member extends ShopBaseEntity implements Serializable {
     private Long id;
 
     /**
-     * 用户名
-     */
-    private String username;
-
-    /**
      * 用户密码
      */
     private String password;
