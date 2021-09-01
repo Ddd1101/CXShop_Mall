@@ -72,6 +72,8 @@ public class LoginController {
         if (registryObj.getEmailCode() == null || !redisEmailCode.equals(registryObj.getEmailCode().trim().toLowerCase())) {
             return R.error(ReturnCodeEnum.USER_EMAIL_CODE_ERROR);
         }
+
+        String test = "";
         // 删除验证码
         redisCache.deleteObject(registryObj.getEmailKey());
         Member member = new Member();
