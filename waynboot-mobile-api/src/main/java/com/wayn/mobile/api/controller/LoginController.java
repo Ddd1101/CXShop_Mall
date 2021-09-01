@@ -72,9 +72,12 @@ public class LoginController {
         if (registryObj.getEmailCode() == null || !redisEmailCode.equals(registryObj.getEmailCode().trim().toLowerCase())) {
             return R.error(ReturnCodeEnum.USER_EMAIL_CODE_ERROR);
         }
+
+        String test = "";
         // 删除验证码
         redisCache.deleteObject(registryObj.getEmailKey());
         Member member = new Member();
+        member.setUsername("u" + new Date().getTime() / 1000);
         member.setNickname("昵称" + new Date().getTime() / 1000);
         String avatar = SysConstants.DEFAULT_AVATAR;
         member.setAvatar(avatar);
