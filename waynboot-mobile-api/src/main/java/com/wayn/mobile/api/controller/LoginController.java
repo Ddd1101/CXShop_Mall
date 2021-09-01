@@ -75,7 +75,10 @@ public class LoginController {
         // 删除验证码
         redisCache.deleteObject(registryObj.getEmailKey());
         Member member = new Member();
-        member.setNickname("昵称" + new Date().getTime() / 1000);
+        String username = "u" + new Date().getTime() / 1000;
+        member.setUsername(username);
+        String nickname = "昵称" + new Date().getTime() / 1000;
+        member.setNickname(nickname);
         String avatar = SysConstants.DEFAULT_AVATAR;
         member.setAvatar(avatar);
         member.setMobile(registryObj.getMobile());
